@@ -9,8 +9,7 @@
 ;; 29, so the number we need to append to the bit representation of 3 to get
 ;; 29 is 5.
 
-(ns bit-concat
-  (:require [clojure.string :refer :all]))
+(use 'clojure.string)
 
 (Integer/parseInt
  (replace-first (Long/toBinaryString 2888816585588551)
