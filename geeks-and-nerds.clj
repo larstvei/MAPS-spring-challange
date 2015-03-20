@@ -11,3 +11,31 @@
 ;; interests. Any person who like any of those things is a nerd.
 ;;
 ;; How many individuals in the dataset are both a geek and a nerd?
+
+(require '[clojure.string :as str])
+(require '[clojure.set :as set])
+
+(let [geeky? (fn [x] (some #(= x %) ["Dungeons & Dragons" "Magic: The Gathering" "Star Wars"
+                                     "Pokémon" "Comics"]))
+      nerdy? (fn [x] (some #(= x %) ["Category Theory" "DTrace" "Chess" "Linear Algebra"
+                                     "Quantum Mechanics" "Neuroscience"]))
+      lines (str/split-lines (slurp "geeks_and_nerds.dat"))
+      vecs (map #(str/split % #" " 2) lines)
+      individuals (map first vecs)
+      interests (map second vecs)]
+  ;; Non-idiomatic Clojure...
+  (loop [individuals individuals
+         interests interests
+         geeky #{}
+         nerdy #{}]
+    (cond (empty? individuals) (count (set/intersection geeky nerdy))
+          (geeky? (first interests))
+          (recur (rest individuals)
+                 (rest interests)
+                 (conj geeky (first individuals)) nerdy)
+          (nerdy? (first interests))
+          (recur (rest individuals)
+                 (rest interests)
+                 geeky (conj nerdy (first individuals))))))
+
+;; => 69
