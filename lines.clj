@@ -6,3 +6,16 @@
 ;;
 ;; How many points are there on the side of the line which has the most
 ;; points? (you may assume that no points lie exactly on the line)
+
+(require '[clojure.string :as str])
+
+(defn determine-side [sides [x y]]
+  (update-in sides [(if (> x y) :right :left)] conj [x y]))
+
+(let [points (->> (slurp "lines.dat")
+                  (str/split-lines)
+                  (map #(vec (map read-string (str/split % #" ")))))
+      sides (reduce determine-side {:right [] :left []} points)]
+  (reduce max (map count (vals sides))))
+
+;; => 506
