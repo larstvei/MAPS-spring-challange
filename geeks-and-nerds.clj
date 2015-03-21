@@ -15,27 +15,17 @@
 (require '[clojure.string :as str])
 (require '[clojure.set :as set])
 
-(let [geeky? (fn [x] (some #(= x %) ["Dungeons & Dragons" "Magic: The Gathering" "Star Wars"
-                                     "Pokémon" "Comics"]))
-      nerdy? (fn [x] (some #(= x %) ["Category Theory" "DTrace" "Chess" "Linear Algebra"
-                                     "Quantum Mechanics" "Neuroscience"]))
-      lines (str/split-lines (slurp "geeks_and_nerds.dat"))
+(defn geeky? [x]
+  (some #(= x %) ["Dungeons & Dragons" "Magic: The Gathering"
+                  "Star Wars" "Pokémon" "Comics"]))
+
+(defn geek-or-nerd [geek-nerd-map individ-tuple]
+  (let [key (if (geeky? (individ-tuple 1)) :geeks :nerds)]
+    (update-in geek-nerd-map [key] conj (individ-tuple 0))))
+
+(let [lines (str/split-lines (slurp "geeks_and_nerds.dat"))
       vecs (map #(str/split % #" " 2) lines)
-      individuals (map first vecs)
-      interests (map second vecs)]
-  ;; Non-idiomatic Clojure...
-  (loop [individuals individuals
-         interests interests
-         geeky #{}
-         nerdy #{}]
-    (cond (empty? individuals) (count (set/intersection geeky nerdy))
-          (geeky? (first interests))
-          (recur (rest individuals)
-                 (rest interests)
-                 (conj geeky (first individuals)) nerdy)
-          (nerdy? (first interests))
-          (recur (rest individuals)
-                 (rest interests)
-                 geeky (conj nerdy (first individuals))))))
+      groups (reduce geek-or-nerd {:geeks #{} :nerds #{}} vecs)]
+  (count (set/intersection (:geeks groups) (:nerds groups))))
 
 ;; => 69
