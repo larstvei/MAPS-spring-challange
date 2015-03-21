@@ -9,10 +9,11 @@
 ;;
 ;; What is the password?
 
-(ns maps-spring-challenge.md5-crack)
-(require '[clojure.string :as str])
-(import 'java.security.MessageDigest)
-(import 'java.security.DigestInputStream)
+(ns maps-spring-challenge.md5-crack
+  (:require [clojure.string :as str]
+            [clojure.math.combinatorics :refer [cartesian-product]])
+  (:import  (java.security.MessageDigest)
+            (java.security.DigestInputStream)))
 
 (defn md5 [s]
   (->> (.digest (doto (java.security.MessageDigest/getInstance "MD5")
