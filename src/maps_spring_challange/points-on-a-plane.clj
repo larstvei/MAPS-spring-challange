@@ -10,7 +10,7 @@
 ;; points that are the furthest away from each other, the answer would be
 ;; 124 533 925 436, since (124, 533) comes before (925, 436) in the list.
 
-(ns maps-spring-challenge.points-on
+(ns maps-spring-challenge.points-on-a-plane
   (:require [clojure.string :as str]
             [clojure.java.io :as io]))
 
