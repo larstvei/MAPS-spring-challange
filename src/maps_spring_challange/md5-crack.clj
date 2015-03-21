@@ -21,22 +21,16 @@
        (map (partial format "%02x"))
        (apply str)))
 
-(defn mod-list [num m]
-  (if (< num m)
-    (conj [] num)
-    (let [d (Math/pow m (int (/ (Math/log num) (Math/log m))))]
-      (conj (mod-list (int (mod num d)) m) (dec (int (/ num d)))))))
-
-(def mod-list (memoize mod-list))
-
-(defn num->pass [num]
-  (apply str (map #(char (+ 97 %)) (mod-list num 26))))
-
 (time
- (loop [strs (map num->pass (iterate inc 0))]
-   (if (= "3a8703f560b3768e0277094c58c686e1" (md5 (first strs)))
-     (first strs)
-     (recur (rest strs)))))
+ (let [alphabet (map #(char (+ 97 %)) (range 26))
+       passwords ((fn ! [n] (lazy-cat(->> alphabet
+                                          (repeat n)
+                                          (apply cartesian-product)
+                                          (map #(apply str %)))
+                                     (! (inc n)))) 1)]
+   (->> passwords
+        (drop-while #(not= "3a8703f560b3768e0277094c58c686e1" (md5 %)))
+        (first))))
 
-;;    "Elapsed time: 170847.74092 msecs"
+;;    "Elapsed time: 107830.707635 msecs"
 ;; => "ghjkl"
