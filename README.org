@@ -16,7 +16,7 @@
   - Lines ✓
   - Matrix
   - Md5 crack
-  - Palindrome trifecta
+  - Palindrome trifecta ✓
   - Points on a plane
   - Power ✓
   - Scaling circles ✓

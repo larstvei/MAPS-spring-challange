@@ -5,3 +5,9 @@
 ;; We are interested in the smallest three-digit palindrome that can be
 ;; written as the sum of three unique three-digit palindromes.
 
+;; Turns out the three smallest three-digit palindromes produce a
+;; three-digit palindrome:
+
+(+ 101 111 121)
+
+;; => 333
