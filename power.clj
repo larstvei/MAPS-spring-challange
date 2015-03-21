@@ -11,3 +11,6 @@
                 (map #(map read-string (str/split % #" ")))
                 (map #(* (second %) (Math/log (first %)))))]
   (.indexOf logs (reduce max logs)))
+
+;; => 550
+
