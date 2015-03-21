@@ -4,9 +4,12 @@
 ;; Now we want to know; which line (0-indexed) represents the largest
 ;; number?
 
-(require '[clojure.string :as str])
+(ns maps-spring-challenge.power.clj
+  (:require [clojure.string :as str]
+            [clojure.java.io :as io]))
 
-(let [logs (->> (slurp "power.dat")
+(let [logs (->> (io/file (io/resource "power.dat"))
+                (slurp)
                 (str/split-lines)
                 (map #(map read-string (str/split % #" ")))
                 (map #(* (second %) (Math/log (first %)))))]

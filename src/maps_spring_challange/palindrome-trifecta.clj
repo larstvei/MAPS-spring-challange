@@ -5,6 +5,7 @@
 ;; We are interested in the smallest three-digit palindrome that can be
 ;; written as the sum of three unique three-digit palindromes.
 
+(ns maps-spring-challenge.palindrome-trifecta)
 ;; Turns out the three smallest three-digit palindromes produce a
 ;; three-digit palindrome:
 

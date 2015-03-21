@@ -41,3 +41,4 @@
 ;; Now the question is: What is the lowest number of rounds (n) the game
 ;; must be in order for you to have at least 50% chance of winning?
 
+(ns maps-spring-challenge.dice.clj)

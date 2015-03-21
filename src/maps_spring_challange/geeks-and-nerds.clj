@@ -12,8 +12,10 @@
 ;;
 ;; How many individuals in the dataset are both a geek and a nerd?
 
-(require '[clojure.string :as str])
-(require '[clojure.set :as set])
+(ns maps-spring-challenge.geeks-and-nerds
+  (:require [clojure.string :as str]
+            [clojure.set :as set]
+            [clojure.java.io :as io]))
 
 (defn geeky? [x]
   (some #(= x %) ["Dungeons & Dragons" "Magic: The Gathering"
@@ -23,7 +25,8 @@
   (let [key (if (geeky? (individ-tuple 1)) :geeks :nerds)]
     (update-in geek-nerd-map [key] conj (individ-tuple 0))))
 
-(let [sets (->> (slurp "geeks_and_nerds.dat")
+(let [sets (->> (io/file (io/resource "geeks_and_nerds.dat"))
+                (slurp)
                 (str/split-lines)
                 (map #(str/split % #" " 2))
                 (reduce geek-or-nerd {:geeks #{} :nerds #{}}))]

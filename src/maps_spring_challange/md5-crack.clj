@@ -9,6 +9,7 @@
 ;;
 ;; What is the password?
 
+(ns maps-spring-challenge.md5-crack)
 (require '[clojure.string :as str])
 (import 'java.security.MessageDigest)
 (import 'java.security.DigestInputStream)

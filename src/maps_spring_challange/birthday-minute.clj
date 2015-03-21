@@ -14,3 +14,5 @@
 ;; probability that two of the students are born within the same minute? By
 ;; within the same minute, we mean the same clock-minute, ie. a minute
 ;; starting at YYYY.MM.DD hh:mm:00.
+
+(ns maps-spring-challenge.birthday-minute)

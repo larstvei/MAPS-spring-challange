@@ -8,3 +8,4 @@
 ;; The answer should specify both of the consecutive months by year and
 ;; month number. For instance, for Feb and March 2015; 2015-02 2015-03
 
+(ns maps-spring-challenge.friday-the)

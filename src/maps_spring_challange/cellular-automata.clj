@@ -19,3 +19,4 @@
 ;;
 ;; How many 'x' characters are there in the string after 253 minutes?
 
+(ns maps-spring-challenge.cellular-automata)

@@ -6,3 +6,5 @@
 ;;   two diagonals
 ;;
 ;; How many distinct 4x4 matrices have all these three properties?
+
+(ns maps-spring-challenge.matrix.clj)
