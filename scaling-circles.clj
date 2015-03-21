@@ -6,3 +6,6 @@
 ;; Write your answer in decimal notation with one digit after the period,
 ;; like "6.3".
 
+(format "%.1f" (-> 52 (* 0.37) (/ Math/PI) (Math/sqrt)))
+
+;; => "2.5"
