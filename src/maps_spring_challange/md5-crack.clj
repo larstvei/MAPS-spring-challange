@@ -9,9 +9,9 @@
 ;;
 ;; What is the password?
 
+(require '[clojure.string :as str])
 (import 'java.security.MessageDigest)
 (import 'java.security.DigestInputStream)
-
 
 (defn md5 [s]
   (->> (.digest (doto (java.security.MessageDigest/getInstance "MD5")
@@ -24,6 +24,8 @@
     (conj [] num)
     (let [d (Math/pow m (int (/ (Math/log num) (Math/log m))))]
       (conj (mod-list (int (mod num d)) m) (dec (int (/ num d)))))))
+
+(def mod-list (memoize mod-list))
 
 (defn num->pass [num]
   (apply str (map #(char (+ 97 %)) (mod-list num 26))))
