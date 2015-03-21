@@ -23,9 +23,10 @@
   (let [key (if (geeky? (individ-tuple 1)) :geeks :nerds)]
     (update-in geek-nerd-map [key] conj (individ-tuple 0))))
 
-(let [lines (str/split-lines (slurp "geeks_and_nerds.dat"))
-      vecs (map #(str/split % #" " 2) lines)
-      groups (reduce geek-or-nerd {:geeks #{} :nerds #{}} vecs)]
-  (count (set/intersection (:geeks groups) (:nerds groups))))
+(let [sets (->> (slurp "geeks_and_nerds.dat")
+                (str/split-lines)
+                (map #(str/split % #" " 2))
+                (reduce geek-or-nerd {:geeks #{} :nerds #{}}))]
+  (count (set/intersection (:geeks sets) (:nerds sets))))
 
 ;; => 69
