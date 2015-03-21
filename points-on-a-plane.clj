@@ -10,3 +10,15 @@
 ;; points that are the furthest away from each other, the answer would be
 ;; 124 533 925 436, since (124, 533) comes before (925, 436) in the list.
 
+(require '[clojure.string :as str])
+
+(defn euclidean [[x1 y1] [x2 y2]]
+  (reduce #(+ %1 (* %2 %2)) [(- x1 x2) (- y1 y2)]))
+
+(let [points (->> (slurp "lines.dat")
+                  (str/split-lines)
+                  (map #(vec (map read-string (str/split % #" ")))))
+      distances (map (fn [p] (map #(euclidean p %) points)) points)]
+  (reduce max (map #(reduce max %) distances)))
+
+;; now how do I retrieve the points...
