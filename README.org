@@ -15,7 +15,7 @@
   - Keyword
   - Lines ✓
   - Matrix
-  - Md5 crack
+  - Md5 crack ✓
   - Palindrome trifecta ✓
   - Points on a plane
   - Power ✓
