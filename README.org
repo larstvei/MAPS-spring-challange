@@ -9,7 +9,7 @@
   - Cellular automata
   - Coconuts
   - Dice
-  - Friday the 13th
+  - Friday the 13th ✓
   - Geeks and nerds ✓
   - Image
   - Keyword
