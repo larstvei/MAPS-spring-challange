@@ -14,17 +14,16 @@
             [clojure.math.combinatorics :refer [cartesian-product]]
             [digest :as digest]))
 
-(time
- (let [hash "3a8703f560b3768e0277094c58c686e1"
-       alphabet (map #(char (+ 97 %)) (range 26))
-       passwords ((fn ! [n] (lazy-cat (->> alphabet
-                                           (repeat n)
-                                           (apply cartesian-product)
-                                           (map #(apply str %)))
-                                      (! (inc n)))) 1)]
-   (->> passwords
-        (drop-while #(not= hash (digest/md5 %)))
-        (first))))
+(let [hash "3a8703f560b3768e0277094c58c686e1"
+      alphabet (map #(char (+ 97 %)) (range 26))
+      passwords ((fn ! [n] (lazy-cat (->> alphabet
+                                          (repeat n)
+                                          (apply cartesian-product)
+                                          (map #(apply str %)))
+                                     (! (inc n)))) 1)]
+  (->> passwords
+       (filter #(= hash (digest/md5 %)))
+       (first)))
 
-;;    "Elapsed time: 12863.479869 msecs"
 ;; => "ghjkl"
+;; "Elapsed time: 12863.479869 msecs"
