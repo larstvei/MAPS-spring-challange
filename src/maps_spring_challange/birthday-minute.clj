@@ -16,3 +16,12 @@
 ;; starting at YYYY.MM.DD hh:mm:00.
 
 (ns maps-spring-challenge.birthday-minute)
+
+(let [minutes (float (* 365 24 60))
+      probs (map #(vector % (/ (- minutes %) minutes)) (iterate inc 1))]
+  (loop [[[i p] & ps] probs acc 1]
+    (if (< 1/2 (- 1 acc))
+      i
+      (recur ps (* p acc)))))
+
+;; => 854
