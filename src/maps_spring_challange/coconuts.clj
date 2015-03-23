@@ -11,3 +11,7 @@
 ;; Colossal Book of Mathematics, W. W. Norton & Company 2001, pages 3-9.
 
 (ns maps-spring-challenge.coconuts.clj)
+
+(-> 1 (+ 1/2) (* 2) (+ 1/2) (* 2) (+ 1/2) (* 2))
+
+;; => 15N
