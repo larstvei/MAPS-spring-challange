@@ -21,13 +21,14 @@
 
 (ns maps-spring-challenge.cellular-automata)
 
-(defn apply-rule [[x y z :all string]]
-  (if (= y \space)
-    (if (or  (= \x x) (= \x z)) \x \space)
-    (if (and (= \x x) (= \x z)) \space \x)))
+(defn apply-rule [[x y z]]
+  (if y (not (and x z)) (or x z)))
 
-(loop [string "   x   " i 0]
-  (if (< i 253)
-    (let [strs (partition 3 1 string)]
-      (recur (concat "  " (map apply-rule strs) "  ") (inc i)))
-    (count (filter #(= % \x) string))))
+(loop [v [false false false true false false false] i 0]
+  (let [step (map apply-rule (partition 3 1 v))]
+    (if (< i 253)
+      (recur (concat [false false] step [false false]) (inc i))
+      (count (filter true? v)))))
+
+;; => 256
+
