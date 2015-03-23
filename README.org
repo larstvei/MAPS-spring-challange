@@ -4,10 +4,10 @@
   problems in a quick-and-dirty fashion. These are my post-challenge
   implementations, of my teams solutions.
 
-  - Birthday minute
+  - Birthday minute ✓
   - Bit concat ✓
-  - Cellular automata
-  - Coconuts
+  - Cellular automata ✓
+  - Coconuts ✓
   - Dice
   - Friday the 13th ✓
   - Geeks and nerds ✓
