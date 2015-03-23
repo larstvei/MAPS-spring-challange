@@ -20,3 +20,14 @@
 ;; How many 'x' characters are there in the string after 253 minutes?
 
 (ns maps-spring-challenge.cellular-automata)
+
+(defn apply-rule [[x y z :all string]]
+  (if (= y \space)
+    (if (or  (= \x x) (= \x z)) \x \space)
+    (if (and (= \x x) (= \x z)) \space \x)))
+
+(loop [string "   x   " i 0]
+  (if (< i 253)
+    (let [strs (partition 3 1 string)]
+      (recur (concat "  " (map apply-rule strs) "  ") (inc i)))
+    (count (filter #(= % \x) string))))
