@@ -8,4 +8,4 @@
 ;; name), in lower case, of this celebrity. This nickname is also hidden in
 ;; the image below the portrait, for your convenience.
 
-(ns maps-spring-challenge.image.clj)
+(ns maps-spring-challenge.image)

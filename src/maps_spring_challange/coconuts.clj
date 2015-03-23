@@ -10,7 +10,7 @@
 ;; This (easy) version of the coconut problem is from Martin Gardner, The
 ;; Colossal Book of Mathematics, W. W. Norton & Company 2001, pages 3-9.
 
-(ns maps-spring-challenge.coconuts.clj)
+(ns maps-spring-challenge.coconuts)
 
 (-> 1 (+ 1/2) (* 2) (+ 1/2) (* 2) (+ 1/2) (* 2))
 

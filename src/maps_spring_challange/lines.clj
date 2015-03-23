@@ -7,7 +7,7 @@
 ;; How many points are there on the side of the line which has the most
 ;; points? (you may assume that no points lie exactly on the line)
 
-(ns maps-spring-challenge.lines.clj
+(ns maps-spring-challenge.lines
   (:require [clojure.string :as str]
             [clojure.java.io :as io]))
 

@@ -4,7 +4,7 @@
 ;; Now we want to know; which line (0-indexed) represents the largest
 ;; number?
 
-(ns maps-spring-challenge.power.clj
+(ns maps-spring-challenge.power
   (:require [clojure.string :as str]
             [clojure.java.io :as io]))
 

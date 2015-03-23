@@ -4,7 +4,7 @@
 ;; For example; if the list consisted only of the words "wow", "such",
 ;; "list" and "wow". Then the answer would be 3.
 
-(ns maps-spring-challenge.wordlist.clj
+(ns maps-spring-challenge.wordlist
   (:require [clojure.string :as str]
             [clojure.java.io :as io]))
 
