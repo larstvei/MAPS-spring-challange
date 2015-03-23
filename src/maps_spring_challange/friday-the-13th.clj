@@ -16,9 +16,7 @@
             [clj-time.format :as tf]))
 
 (let [format (tf/formatters :year-month)
-      days (-> (t/now)
-               (t/first-day-of-the-month)
-               (t/plus (t/days 12))
+      days (-> (t/now) (t/first-day-of-the-month) (t/plus (t/days 12))
                (tp/periodic-seq (t/months 1)))]
   (loop [[t1 t2 & days] days]
     (if (every? t?/friday? [t1 t2])
