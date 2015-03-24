@@ -21,9 +21,9 @@
   (some #(= x %) ["Dungeons & Dragons" "Magic: The Gathering"
                   "Star Wars" "Pokémon" "Comics"]))
 
-(defn geek-or-nerd [geek-nerd-map individ-tuple]
-  (let [key (if (geeky? (individ-tuple 1)) :geeks :nerds)]
-    (update-in geek-nerd-map [key] conj (individ-tuple 0))))
+(defn geek-or-nerd [geek-nerd-map [individual interest]]
+  (let [key (if (geeky? interest) :geeks :nerds)]
+    (update-in geek-nerd-map [key] conj individual)))
 
 (let [sets (->> (io/file (io/resource "geeks_and_nerds.dat"))
                 (slurp)
