@@ -17,7 +17,7 @@
   - Matrix
   - Md5 crack ✓
   - Palindrome trifecta ✓
-  - Points on a plane
+  - Points on a plane ✓
   - Power ✓
   - Scaling circles ✓
   - Wordlist ✓
