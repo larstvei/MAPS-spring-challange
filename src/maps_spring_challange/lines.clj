@@ -12,13 +12,13 @@
             [clojure.java.io :as io]))
 
 (defn determine-side [sides [x y]]
-  (update-in sides [(if (> x y) :right :left)] conj [x y]))
+  (update-in sides [(if (> x y) :right :left)] inc))
 
 (let [points (->> (io/file (io/resource "lines.dat"))
                   (slurp)
                   (str/split-lines)
                   (map #(vec (map read-string (str/split % #" ")))))
-      sides (reduce determine-side {:right [] :left []} points)]
-  (reduce max (map count (vals sides))))
+      sides (reduce determine-side {:right 0 :left 0} points)]
+  (reduce max (vals sides)))
 
 ;; => 506
