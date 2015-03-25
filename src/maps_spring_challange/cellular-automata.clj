@@ -31,4 +31,3 @@
       (count (filter true? v)))))
 
 ;; => 256
-

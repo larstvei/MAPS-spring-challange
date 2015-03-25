@@ -15,13 +15,19 @@
             [clojure.java.io :as io]))
 
 (defn euclidean [[x1 y1] [x2 y2]]
-  (reduce #(+ %1 (* %2 %2)) [(- x1 x2) (- y1 y2)]))
+  (Math/sqrt (+ (#(* % %) (- x1 x2))
+                (#(* % %) (- y1 y2)))))
 
 (let [points (->> (io/file (io/resource "lines.dat"))
                   (slurp)
                   (str/split-lines)
-                  (map #(vec (map read-string (str/split % #" ")))))
-      distances (map (fn [p] (map #(euclidean p %) points)) points)]
-  (reduce max (map #(reduce max %) distances)))
+                  (map #(vec (map read-string (str/split % #" ")))))]
+  (apply format "%d %d %d %d"
+         (->> (for [p1 points p2 points] [(euclidean p1 p2) p1 p2])
+              (apply max-key first)
+              (rest)
+              (sort #(< (.indexOf points %1) (.indexOf points %2)))
+              (flatten))))
 
-;; now how do I retrieve the points...
+;; => "997 19 14 994"
+
