@@ -21,10 +21,6 @@
   (doseq [[x y c] rgb]
     (when (= c needle)
       (.setRGB image x y (unchecked-int 0xFFFF69B4))))
-  (-> (frame
-       :content
-       (label :icon
-              (.getScaledInstance
-               image (/ w 2) (/ h 2) BufferedImage/SCALE_DEFAULT)))
-      pack!
-      show!))
+  (let [img (.getScaledInstance image (/ w 2) (/ h 2)
+             BufferedImage/SCALE_DEFAULT)]
+   (-> (frame :content (label :icon img)) pack! show!)))
