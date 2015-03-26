@@ -11,7 +11,7 @@
   - Dice
   - Friday the 13th ✓
   - Geeks and nerds ✓
-  - Image
+  - Image ✓
   - Keyword
   - Lines ✓
   - Matrix

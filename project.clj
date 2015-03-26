@@ -6,5 +6,6 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/math.combinatorics "0.1.1"]
                  [digest "1.4.4"]
-                 [clj-time "0.9.0"]]
+                 [clj-time "0.9.0"]
+                 [seesaw "1.4.5"]]
   :resource-paths ["resources"])
