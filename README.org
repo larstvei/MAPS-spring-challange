@@ -12,7 +12,7 @@
   - Friday the 13th ✓
   - Geeks and nerds ✓
   - Image ✓
-  - Keyword
+  - Keyword ✓
   - Lines ✓
   - Matrix
   - Md5 crack ✓

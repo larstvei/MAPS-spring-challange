@@ -14,4 +14,29 @@
 ;; The edges must be printed in the order they are visited when starting in
 ;; node 0 and ending in node 24.
 
-(ns maps-spring-challenge.keyword)
+(ns maps-spring-challenge.keyword
+  (:require [clojure.string :as str]
+            [clojure.java.io :as io]
+            [clojure.data.priority-map :refer :all]))
+
+(defn node [i table]
+  [i (->> table
+          (map-indexed #(vector %1 %2))
+          (filter (fn [[i e]] (pos? e))))])
+
+(let [target 24
+      graph (->> (io/file (io/resource "graph.tsv"))
+                 (slurp)
+                 (str/split-lines)
+                 (map #(vec (map read-string (str/split % #"\t"))))
+                 (map-indexed node)
+                 (vec))]
+  (loop [queue (priority-map (conj (graph 0) []) 0)]
+    (let [[[i edges path] dist] (peek queue)
+          q (reduce (fn [r [j d]]
+                      (let [node (conj (graph j) (conj path d))]
+                        (conj r [node (+ d dist)])))
+                    (pop queue) edges)]
+      (if (= target i)
+        (apply str (map #(char (mod % 128)) path))
+        (recur q)))))
