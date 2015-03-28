@@ -8,6 +8,9 @@
 ;; name), in lower case, of this celebrity. This nickname is also hidden in
 ;; the image below the portrait, for your convenience.
 
+;; Our original solution was to open the image in paint, and used the bucket
+;; on the background. This is how one could emulate bucket with Clojure:
+
 (ns maps-spring-challenge.image
   (:require [clojure.java.io :as io]
             [seesaw.core :refer :all])
